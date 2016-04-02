@@ -1,0 +1,44 @@
+.login {
+    width: 25%;
+    margin: auto;
+}
+
+input {
+    margin: 5px;
+}
+
+body {
+    background-image: url(../images/bg2.png);
+}
+
+#footer {
+    width:100%;
+}
+
+.patientBox {
+    width: 30%;
+    display: inline-block;
+    margin: 5px;
+    vertical-align: top;
+    text-align: left;
+}
+
+.patientInfoColumn {
+    width: 100%;
+    display: inline-block;
+    margin: 5px;
+    vertical-align: top;
+    text-align: left;
+}
+
+.indentFive {
+    padding-left: 5px;
+}
+
+.indentTen {
+    padding-left: 10px;
+}
+
+.exerciseChart {
+    margin: 5px;
+}
