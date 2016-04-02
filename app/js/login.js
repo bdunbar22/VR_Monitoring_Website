@@ -252,6 +252,9 @@ function createGraph(exercise, patientGraphContainer) {
 
 	google.charts.setOnLoadCallback(drawColumnChart);
 
+	/**
+	 * Example from google.charts tutorial. Just need to update data now.
+	 */
 	function drawColumnChart() {
 		var data = new google.visualization.DataTable();
 		data.addColumn('timeofday', 'Time of Day');
