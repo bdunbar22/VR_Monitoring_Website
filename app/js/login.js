@@ -4,6 +4,10 @@
  * better design in the future. However, currently aiming to successfully provide the functionality
  * of displaying the correct data before the RISE presentation.
  */
+	//Test dabase is burning-heat-5840.
+//var FIREBASE_URL = 'https://burning-heat-5840.firebaseio.com/';
+var FIREBASE_URL = 'https://amber-inferno-7571.firebaseio.com/';
+
 
 /*
  * Allow for physical therapist users to login to see their patients'
@@ -11,7 +15,7 @@
  */
 function therapistSubmit() {
 	var nameCredentials = document.getElementById("physicalTherapistId").value;
-	var myDataRef = new Firebase('https://burning-heat-5840.firebaseio.com/');
+	var myDataRef = new Firebase(FIREBASE_URL);
 	var physicalTherapistsRef = myDataRef.child("therapistlist");
 	var $failMessage = $("#hiddenLoginMessage");
 	$failMessage.removeClass("hidden");
@@ -32,7 +36,7 @@ function therapistSubmit() {
  * param therapistName gives the name of the specific therapist
  */
 function fillTherapistPage(therapistName) {
-	var myDataRef = new Firebase('https://burning-heat-5840.firebaseio.com/');
+	var myDataRef = new Firebase(FIREBASE_URL);
 
 	myDataRef.on('value', function(snapshot) {
 		//Redesign page
@@ -83,7 +87,7 @@ function fillTherapistPage(therapistName) {
 function fillUserDataPage(userId) {
 	userId = userId.value;
 	var therapistName = CurrentTherapistName;
-	var myDataRef = new Firebase('https://burning-heat-5840.firebaseio.com/');
+	var myDataRef = new Firebase(FIREBASE_URL);
 
 	myDataRef.on('value', function(snapshot) {
 		//Redesign page
@@ -119,7 +123,7 @@ function fillUserDataPage(userId) {
 		//PT title
 		therapistContainer.append("<h2>Welcome " + therapist.name + "!</h2>");
 		CurrentTherapistName = therapist.name;
-		therapistContainer.append("<button onclick='fillTherapistPage(CurrentTherapistName)'>" +
+		therapistContainer.append("<button class='btn btn-primary' onclick='fillTherapistPage(CurrentTherapistName)'>" +
 			"Back</button><br>");
 
 		//User data
@@ -177,6 +181,7 @@ function patientTemplate(patientObject) {
 	htmlContent += "<h4>Name: " + patientObject.name + "</h4>";
 
 	//Display Exercises
+	//Each Exercise as a collapsible list of data.
 	for(var i in patientObject.exercises) {
 		var exercise = patientObject.exercises[i];
 		htmlContent += "<h5>Exercise: " + exercise.name + "</h5>";
@@ -210,7 +215,7 @@ function patientExerciseTemplate(patientObject) {
 	//Patient Title
 	//Trouble sending variables to onclick when creating the element as a string. Created a
 	// global variable to get it working.
-	htmlContent += "<button onclick='fillUserDataPage(this)' value=" + patientObject.id + ">" +
+	htmlContent += "<button class='btn btn-primary' onclick='fillUserDataPage(this)' value=" + patientObject.id + ">" +
 	"Name: " + patientObject.name + "</button>";
 
 	//Display Exercises

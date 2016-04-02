@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="38a1c29c-a1b4-48b4-bc58-192301fe1373" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/login.js" afterPath="$PROJECT_DIR$/app/js/login.js" />
     </list>
     <ignored path="VR_Prototype.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -647,7 +646,7 @@
       <workItem from="1458323880632" duration="2816000" />
       <workItem from="1458412127025" duration="2721000" />
       <workItem from="1459019700723" duration="1700000" />
-      <workItem from="1459619610303" duration="8295000" />
+      <workItem from="1459619610303" duration="8720000" />
     </task>
     <task id="LOCAL-00001" summary="Updated chart comments">
       <created>1459627350661</created>
@@ -655,11 +654,17 @@
       <option name="project" value="LOCAL" />
       <updated>1459627350661</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Connected charts to the data from the database.">
+      <created>1459630068954</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1459630068954</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31700000" />
+    <option name="totallyTimeSpent" value="32125000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="694" extended-state="6" />
@@ -719,7 +724,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Updated chart comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated chart comments" />
+    <MESSAGE value="Connected charts to the data from the database." />
+    <option name="LAST_COMMIT_MESSAGE" value="Connected charts to the data from the database." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
