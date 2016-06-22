@@ -1,9 +1,22 @@
-<div id="mainContainer">
-    <div id='therapistInfoSection' class='row text-center'>
+{{model}}
 
-    </div>
+<div id='therapistInfoSection' class='row text-center'>
+    <h2>Welcome {{model.therapist.name}}!</h2>
+    <h3>Please view your users below:</h3>
+    <br>
+</div>
 
-    <div id='patientInfoSection' class='row text-center'>
+<div id='patientInfoSection' class='row text-center'>
 
+
+    <div ng-repeat="user in model.users">
+        <div class='patientBox well'>
+            <button class='btn btn-primary'
+                    ng-click="model.displayUser(user)">Name: {{user.name}}</button>
+
+            <div ng-repeat="exercise in user.exercises">
+                <h5>Exercise: {{exercise.name}}</h5>
+            </div>
+        </div>
     </div>
 </div>

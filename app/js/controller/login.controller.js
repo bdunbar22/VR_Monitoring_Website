@@ -1,4 +1,7 @@
-//Test dabase is burning-heat-5840.
+/**
+ * Created by Ben Dunbar on 6/22/16.
+ */
+
 //var FIREBASE_URL = 'https://burning-heat-5840.firebaseio.com/';
 (function() {
 	angular
@@ -7,6 +10,7 @@
 
 	function LoginController($location) {
 		var vm = this;
+		vm.message = "Login Controller";
 		var FIREBASE_URL = 'https://amber-inferno-7571.firebaseio.com/';
 		vm.therapistSubmit = therapistSubmit;
 

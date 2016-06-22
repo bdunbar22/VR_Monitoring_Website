@@ -19,6 +19,11 @@
                 controller: "PhysicalTherapistController",
                 controllerAs: "model"
             })
+            .when("/user/:uid", {
+                templateUrl: "templates/userDataHome.html",
+                controller: "UserDataController",
+                controllerAs: "model"
+            })
             .otherwise({
                 templateUrl: "templates/physicalTherapistLogin.html",
                 controller: "LoginController",
