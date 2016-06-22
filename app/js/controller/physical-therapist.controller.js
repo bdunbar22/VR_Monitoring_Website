@@ -49,7 +49,7 @@
 		init();
 		
 		function displayUser(user) {
-			$location.url("user/" + user.id);
+			$location.url("/home/" + vm.therapist.id + "/user/" + user.id);
 		}
 	}
 })();

@@ -6,5 +6,5 @@
  * This design patter is IIFE - Immediately Invoked Function Environment.
  */
 (function () {
-    angular.module("WHAM", ["ngRoute"]);
+    angular.module("WHAM", ["ngRoute", "firebase"]);
 })();

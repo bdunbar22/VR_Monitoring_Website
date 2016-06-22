@@ -19,7 +19,7 @@
                 controller: "PhysicalTherapistController",
                 controllerAs: "model"
             })
-            .when("/user/:uid", {
+            .when("/home/:ptid/user/:uid", {
                 templateUrl: "templates/userDataHome.html",
                 controller: "UserDataController",
                 controllerAs: "model"

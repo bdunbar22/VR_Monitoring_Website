@@ -13,126 +13,41 @@
         vm.message = "User Data Controller";
         var FIREBASE_URL = 'https://amber-inferno-7571.firebaseio.com/';
         vm.createGraph = createGraph;
+        vm.therapistPage = therapistPage;
 
         function init() {
             var username = $routeParams["uid"];
-            fillUserDataPage(username);
-        }
-        init();
-
-        /**
-         * Populate the data page for a single patient when chosen by the therapist.
-         *
-         * param userId gives the id of the specific patient to be accessed
-         */
-        function fillUserDataPage(userId) {
-            userId = userId.value;
-            var therapistName = CurrentTherapistName;
+            var therapistId = $routeParams["ptid"];
             var myDataRef = new Firebase(FIREBASE_URL);
 
             myDataRef.on('value', function (snapshot) {
                 //Get the patient
                 var users = snapshot.val().userlist;
-                var user;
                 //Get the therapist object
                 for (var i in users) {
-                    if (users[i].id === userId) {
-                        user = users[i];
+                    if (users[i].id === username) {
+                        vm.user = users[i];
                     }
                 }
 
                 //Get the therapist
                 var therapists = snapshot.val().therapistlist;
-                var therapist;
                 //Get the therapist object
                 for (var i in therapists) {
-                    if (therapists[i].name === therapistName) {
-                        therapist = therapists[i];
+                    if (therapists[i].id === therapistId) {
+                        vm.therapist = therapists[i];
                     }
                 }
-
-                //PT title
-                therapistContainer.append("<h2>Welcome " + therapist.name + "!</h2>");
-                CurrentTherapistName = therapist.name;
-                therapistContainer.append("<button class='btn btn-primary' ng-click='model.fillTherapistPage(" + CurrentTherapistName +
-                    ")'>" + "Back</button><br>");
-
-                //User data
-                patientDataContainer.append(patientTemplate(user));
 
                 //User graphs
                 for (var i in user.exercises) {
                     var exercise = user.exercises[i];
-                    createGraph(exercise, patientGraphContainer);
+                    createGraph(exercise);
                 }
             });
         }
-
-        /**
-         * Template building for the individual patients.
-         *
-         * template object has the following format. Shown by example
-         *
-         {
-           "exercises" : [ {
-             "name" : "riverraft",
-             "occurance" : [ {
-               "dataset" : "",
-               "date" : "",
-               "duration" : "",
-               "feedback" : ""
-             }, {
-               "dataset" : "",
-               "date" : "",
-               "duration" : "",
-               "feedback" : ""
-             } ]
-           }, {
-             "name" : "exercise2",
-             "occurance" : [ {
-               "dataset" : "",
-               "date" : "",
-               "duration" : "",
-               "feedback" : ""
-             }, {
-               "dataset" : "",
-               "date" : "",
-               "duration" : "",
-               "feedback" : ""
-             } ]
-           } ],
-           "id" : "user2",
-           "name" : "test user2"
-         }
-         */
-        function patientTemplate(patientObject) {
-            var htmlContent = "";
-            htmlContent += "<div class='patientInfoColumn well'>";
-            //Patient Title
-            htmlContent += "<h4>Name: " + patientObject.name + "</h4>";
-
-            //Display Exercises
-            //Each Exercise as a collapsible list of data.
-            for (var i in patientObject.exercises) {
-                var exercise = patientObject.exercises[i];
-                htmlContent += "<h5>Exercise: " + exercise.name + "</h5>";
-
-                //Occurances
-                for (var j in exercise.occurance) {
-                    var occurance = exercise.occurance[j];
-                    htmlContent += "<h5 class='indentFive'>Occurance:</h5>";
-                    htmlContent += "<p class='indentTen'>Dataset: " + occurance.dataset + "</p>";
-                    htmlContent += "<p class='indentTen'>Date: " + occurance.date + "</p>";
-                    htmlContent += "<p class='indentTen'>Duration: " + occurance.duration + "</p>";
-                    htmlContent += "<p class='indentTen'>Feedback: " + occurance.feedback + "</p>";
-                }
-            }
-
-
-            htmlContent += "</div>"
-            return htmlContent;
-        }
-
+        init();
+        
         /**
          * Create a graph of score vs. date for an exercise.
          * Score is an integer
@@ -154,8 +69,9 @@
 		  } ]
 		}
          */
-        function createGraph(exercise, patientGraphContainer) {
+        function createGraph(exercise) {
             var chartDivId = "chart_" + exercise.name;
+            var patientGraphContainer = $("graphColumn");
             patientGraphContainer.append("<div id='" + chartDivId + "' class='exerciseChart'></div>")
 
 
@@ -194,6 +110,10 @@
 
                 chart.draw(data, options);
             }
+        }
+        
+        function therapistPage() {
+            $location.url("/home/" + vm.therapist.id);
         }
     }
 })();

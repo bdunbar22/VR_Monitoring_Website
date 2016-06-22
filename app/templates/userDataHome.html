@@ -1,13 +1,28 @@
 {{model}}
 
-<div id='therapistInfoSection' class='row text-center'>
-
+<div id="therapistInfoSection" class="row text-center">
+    <h2>Welcome {{model.therapist.name}}!</h2>
+    <button class="btn btn-primary" 
+            ng-click="model.therapistPage()">Back</button>
+    <br>
 </div>
 
-<div id='patientDataSection' class='col-xs-4'>
+<div id="patientDataSection" class="col-xs-4">
+    <div class='patientInfoColumn well'>
+        <h4>Name: {{model.user.name}}</h4>
 
+        <div ng-repeat="exercise in model.user.exercises">
+            <h5>Exercise: {{exercise.name}}</h5>
+            <div ng-repeat="occurance in exercise.occurance">
+                <h5 class='indentFive'>Occurance:</h5>
+                <p class='indentTen'>Dataset: {{occurance.date}}</p>
+                <p class='indentTen'>Duration: {{occurance.duration}}</p>
+                <p class='indentTen'>Feedback: {{occurance.feedback}}</p>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div id='graphColumn' class='col-xs-8'>
+<div id="graphColumn" class="col-xs-8">
 
 </div>
