@@ -42,3 +42,56 @@ body {
 .exerciseChart {
     margin: 5px;
 }
+
+.header-present {
+    padding-top: 75px;
+}
+
+.footer-present {
+    padding-bottom: 75px;
+}
+
+.header-glyphicon {
+    padding-right: 10px;
+}
+
+.home-glyphicon {
+    padding-left: 15px;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.navbar-header {
+    width: 100%
+}
+
+.navbar-footer {
+    width: 100%
+}
+
+.navbar-brand-center {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    float: none;
+}
+
+.navbar {
+    color: #000000;
+    background-color: #50e8ab!important;
+    border-color: #000000;
+}
+
+
+.navbar-text {
+    float: none;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.navbar .navbar-default {
+    background-color: #50e8ab!important;
+}
