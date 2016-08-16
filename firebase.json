@@ -7,7 +7,7 @@
     "**/node_modules/**"
   ],
   "hosting": {
-    "public": "public",
+    "public": "app",
     "rewrites": [
       {
         "source": "**",
