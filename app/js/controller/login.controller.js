@@ -2,20 +2,18 @@
  * Created by Ben Dunbar on 6/22/16.
  */
 
-//var FIREBASE_URL = 'https://burning-heat-5840.firebaseio.com/';
 (function() {
 	angular
 		.module("WHAM")
 		.controller("LoginController", LoginController);
 
-	function LoginController($location) {
+	function LoginController($location, $firebaseObject) {
 		var vm = this;
 		vm.message = "Login Controller";
-		var FIREBASE_URL = 'https://amber-inferno-7571.firebaseio.com/';
 		vm.therapistSubmit = therapistSubmit;
 
 		function init() {
-			//If moving to services. This init function should be used to retreive initial data.
+			//If moving to services. This init function should be used to retrieve initial data.
 		}
 		init();
 

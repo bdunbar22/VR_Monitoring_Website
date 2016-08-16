@@ -1,7 +1,5 @@
-{{model}}
-
 <div id="therapistInfoSection" class="row text-center">
-    <h2>Welcome {{model.therapist.name}}!</h2>
+    <h2>Welcome {{therapist.name}}!</h2>
     <button class="btn btn-primary" 
             ng-click="model.therapistPage()">Back</button>
     <br>
@@ -13,11 +11,18 @@
 
         <div ng-repeat="exercise in model.user.exercises">
             <h5>Exercise: {{exercise.name}}</h5>
-            <div ng-repeat="occurance in exercise.occurance">
-                <h5 class='indentFive'>Occurance:</h5>
-                <p class='indentTen'>Dataset: {{occurance.date}}</p>
-                <p class='indentTen'>Duration: {{occurance.duration}}</p>
-                <p class='indentTen'>Feedback: {{occurance.feedback}}</p>
+            <!--<a ng-attr-data-target="#{{exercise.name}}"-->
+               <!--data-toggle="collapse"-->
+               <!--class="btn btn-info" >Toggle Data</a>-->
+
+            <!--<div  ng-attr-id="{{exercise.name}}"-->
+                  <!--class="collapse">-->
+                <div ng-repeat="occurance in exercise.occurance">
+                    <h5 class='indentFive'>Occurance:</h5>
+                    <p class='indentTen'>Dataset: {{occurance.date}}</p>
+                    <p class='indentTen'>Duration: {{occurance.duration}}</p>
+                    <p class='indentTen'>Feedback: {{occurance.feedback}}</p>
+                </div>
             </div>
         </div>
     </div>

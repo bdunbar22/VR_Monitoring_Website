@@ -12,11 +12,18 @@ Development information:
 
     The website uses Angular.js to help with templates and includes. It uses Firebase as a host server and database.
     Angular allows the html files to be stored as templates. The config.js file determines which template to add to the
-    ng-view div on the indew page. The pages are hooked up to controller files, which currently handle interactions with
+    ng-view div on the index page. The pages are hooked up to controller files, which currently handle interactions with
     the Firebase database and update the angular model (the variable vm in each controller) with the information needed
     at the given time. The templates are hooked up with angular so that they respond to the model (referred to as model
     in the templates). Bootstrap is loaded via cdn and can be used for styling. The graphs on the users data page are
      generated using the google charts library.
+
+     Note: with the recent AngularFire changes, sometimes you have to press login twice.
+
+Running Locally:
+
+    During development I had this in my Sites folder so that I could easily navigate to it during development. If
+    this isn't what you'd prefer for your development then creating a server.js file would be a good idea.
 
 How to Deploy to Firebase:
     https://amber-inferno-7571.firebaseio.com/?page=Hosting
@@ -48,6 +55,10 @@ Future Steps:
     - Make the database secure so that you need credentials to access the data.
     - Augment the physical therapist and user structures so that more information can be added and displayed.
     - Update the UI to allow for enhanced experience for the users.
+
+Current Deployed Urls:
+https://burning-heat-5840.firebaseapp.com/
+https://amber-inferno-7571.firebaseapp.com/
 
 Regards,
 Ben Dunbar

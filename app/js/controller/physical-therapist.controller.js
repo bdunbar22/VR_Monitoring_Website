@@ -2,21 +2,23 @@
  * Created by Ben Dunbar on 6/22/16.
  */
 
-//var FIREBASE_URL = 'https://burning-heat-5840.firebaseio.com/';
 (function() {
 	angular
 		.module("WHAM")
 		.controller("PhysicalTherapistController", PhysicalTherapistController);
 
-	function PhysicalTherapistController($location, $routeParams) {
+	function PhysicalTherapistController($scope, $location, $routeParams, $firebaseObject) {
 		var vm = this;
+		vm.therapist = '';
+		vm.users = [];
+
 		vm.message = "Physical Therapist Controller";
-		var FIREBASE_URL = 'https://amber-inferno-7571.firebaseio.com/';
 		vm.displayUser = displayUser;
 
 		function init() {
 			var username = $routeParams["ptid"];
 			var myDataRef = new Firebase(FIREBASE_URL);
+
 
 			myDataRef.on('value', function (snapshot) {
 				//Get all therapists and patients
@@ -26,6 +28,9 @@
 				//Get the therapist object
 				for (var i in therapists) {
 					if (therapists[i].name === username) {
+						var therapistRef = myDataRef.child('therapistlist/'+ i);
+						var syncObject = $firebaseObject(therapistRef);
+						syncObject.$bindTo($scope, "therapist");
 						vm.therapist = therapists[i];
 					}
 				}
@@ -49,7 +54,7 @@
 		init();
 		
 		function displayUser(user) {
-			$location.url("/home/" + vm.therapist.id + "/user/" + user.id);
+			$location.url("/home/" + vm.therapist.name + "/user/" + user.id);
 		}
 	}
 })();

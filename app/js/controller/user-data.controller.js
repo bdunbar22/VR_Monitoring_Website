@@ -2,28 +2,28 @@
  * Created by Ben Dunbar on 6/22/16.
  */
 
-//var FIREBASE_URL = 'https://burning-heat-5840.firebaseio.com/';
 (function() {
     angular
         .module("WHAM")
         .controller("UserDataController", UserDataController);
 
-    function UserDataController($location, $routeParams) {
+    function UserDataController($scope, $location, $routeParams, $firebaseObject) {
         var vm = this;
+        vm.therapist = '';
+        vm.user = '';
         vm.message = "User Data Controller";
-        var FIREBASE_URL = 'https://amber-inferno-7571.firebaseio.com/';
         vm.createGraph = createGraph;
         vm.therapistPage = therapistPage;
 
         function init() {
             var username = $routeParams["uid"];
-            var therapistId = $routeParams["ptid"];
+            var therapistName = $routeParams["ptid"];
             var myDataRef = new Firebase(FIREBASE_URL);
 
             myDataRef.on('value', function (snapshot) {
                 //Get the patient
                 var users = snapshot.val().userlist;
-                //Get the therapist object
+                //Get the patient object
                 for (var i in users) {
                     if (users[i].id === username) {
                         vm.user = users[i];
@@ -34,14 +34,17 @@
                 var therapists = snapshot.val().therapistlist;
                 //Get the therapist object
                 for (var i in therapists) {
-                    if (therapists[i].id === therapistId) {
+                    if (therapists[i].name === therapistName) {
+                        var therapistRef = myDataRef.child('therapistlist/'+ i);
+                        var syncObject = $firebaseObject(therapistRef);
+                        syncObject.$bindTo($scope, "therapist");
                         vm.therapist = therapists[i];
                     }
                 }
 
                 //User graphs
-                for (var i in user.exercises) {
-                    var exercise = user.exercises[i];
+                for (var i in vm.user.exercises) {
+                    var exercise = vm.user.exercises[i];
                     createGraph(exercise);
                 }
             });
@@ -71,9 +74,9 @@
          */
         function createGraph(exercise) {
             var chartDivId = "chart_" + exercise.name;
-            var patientGraphContainer = $("graphColumn");
-            patientGraphContainer.append("<div id='" + chartDivId + "' class='exerciseChart'></div>")
+            var patientGraphContainer = document.getElementById("graphColumn");
 
+            patientGraphContainer.innerHTML += "<div id='" + chartDivId + "' class='exerciseChart'></div>";
 
             google.charts.setOnLoadCallback(drawColumnChart);
 
@@ -113,7 +116,7 @@
         }
         
         function therapistPage() {
-            $location.url("/home/" + vm.therapist.id);
+            $location.url("/home/" + vm.therapist.name);
         }
     }
 })();
